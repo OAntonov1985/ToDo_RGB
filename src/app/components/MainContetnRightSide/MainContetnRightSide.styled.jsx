@@ -4,5 +4,15 @@ export const RightSideContainer = styled("div")(() => ({
     display: "flex",
     backgroundColor: "#d7ccc8",
     flex: "1 1 auto",
-    width: "1000px",
+    padding: "10px",
+    flexDirection: "column",
+    // height: "1000px",
+    gap: "20px",
+}));
+
+export const RightSideTitle = styled("div")(() => ({
+    fontSize: "20px",
+    fontWeight: "bolder",
+    display: "flex",
+    gap: "10px",
 }));

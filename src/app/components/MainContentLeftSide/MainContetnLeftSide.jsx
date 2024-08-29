@@ -4,13 +4,25 @@ import {
     FilterListUl,
     FilterListLi,
     CheckboxFilter,
+    BurgerMenuIcon,
+    BurgerMenuBox,
 } from "./MainContentLeftSide.styled";
 
-export default function MainContetntLeftSide() {
+export default function MainContetntLeftSide({
+    isRenderLeftSide,
+    setIsRenderLeftSide,
+}) {
     return (
         <>
-            <LeftSideContainer>
-                <TitleLeftSide>Фільтр по</TitleLeftSide>
+            <LeftSideContainer isRenderLeftSide={isRenderLeftSide}>
+                <TitleLeftSide>
+                    <BurgerMenuBox
+                        onClick={() => setIsRenderLeftSide(!isRenderLeftSide)}
+                    >
+                        <BurgerMenuIcon />
+                    </BurgerMenuBox>
+                    Фільтр по
+                </TitleLeftSide>
                 <FilterListUl>
                     <FilterListLi>
                         <CheckboxFilter id='all' />
