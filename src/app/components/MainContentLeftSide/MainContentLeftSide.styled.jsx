@@ -37,6 +37,8 @@ export const BurgerMenuBox = styled("div")(() => ({
     cursor: "pointer",
     zIndex: "2",
     boxSizing: "border-box",
+    display: "flex",
+    gap: "10px",
 }));
 
 export const BurgerMenuIcon = styled(MenuIcon)(() => ({}));

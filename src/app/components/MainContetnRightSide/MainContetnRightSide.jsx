@@ -19,13 +19,15 @@ export default function MainContetnRightSide({
         <RightSideContainer>
             <RightSideTitle>
                 <BurgerMenuBox
-                    onClick={() => setIsRenderLeftSide(!isRenderLeftSide)}
+                // onClick={() => setIsRenderLeftSide(!isRenderLeftSide)}
                 >
-                    <BurgerMenuIcon />
+                    <BurgerMenuIcon
+                        onClick={() => setIsRenderLeftSide(!isRenderLeftSide)}
+                    />
+                    Мої задачі
                 </BurgerMenuBox>
-                Мої задачі
+                <AddNewTask />
             </RightSideTitle>
-            <AddNewTask />
             <PerformedTasks />
             <UnperformedTasks />
         </RightSideContainer>

@@ -1,5 +1,6 @@
 import { Colors } from "@/app/utils/Colors/Colors";
 import styled from "@emotion/styled";
+import { Checkbox } from "@mui/material";
 
 export const UlTitle = styled("ul")(() => ({
     fontWeight: "bold",
@@ -40,7 +41,7 @@ export const TaskDescription = styled("div")(() => ({
     // gap: "5px",
 }));
 
-export const TaskStatus = styled("checkboks")(() => ({
+export const TaskStatus = styled(Checkbox)(({ taskIsDone }) => ({
     // width: "100%",
     // display: "flex",
     // gap: "5px",
@@ -49,3 +50,5 @@ export const TaskStatus = styled("checkboks")(() => ({
 export const TaskSpanElement = styled("span")(() => ({
     fontWeight: "bold",
 }));
+
+export const TaskStatusBox = styled("div")(() => ({}));

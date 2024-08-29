@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import MainContetn from './components/MainContent/MainContent';
 
 
+
 export default function Home() {
     return (
         <>

@@ -7,11 +7,15 @@ import {
     BurgerMenuIcon,
     BurgerMenuBox,
 } from "./MainContentLeftSide.styled";
+import { useSelector } from "react-redux";
 
 export default function MainContetntLeftSide({
     isRenderLeftSide,
     setIsRenderLeftSide,
 }) {
+    const tasksList = useSelector(state => state.user.tasksList);
+
+    // console.log(tasksList);
     return (
         <>
             <LeftSideContainer isRenderLeftSide={isRenderLeftSide}>
