@@ -5,7 +5,7 @@ import Select from "@mui/material/Select";
 import NativeSelect from "@mui/material";
 import { useState } from "react";
 
-export default function TaskSekector() {
+export default function TaskSekector({ handleChange }) {
     const [taslSelector, setTaskSelector] = useState("Саморозвиток");
     return (
         <FormControl fullWidth>
@@ -18,10 +18,19 @@ export default function TaskSekector() {
             </InputLabel>
             <Select
                 labelId='demo-simple-select-label'
-                id='demo-simple-select'
+                id='taskCategory'
                 value={taslSelector}
                 label='Категорія'
-                onChange={event => setTaskSelector(event.target.value)}
+                onChange={event => {
+                    setTaskSelector(event.target.value); // Оновлюємо локальний стан
+                    handleChange({
+                        // Викликаємо handleChange
+                        target: {
+                            id: "taskCategory",
+                            value: event.target.value,
+                        },
+                    });
+                }}
             >
                 <MenuItem value={"Робота"}>Робота</MenuItem>
                 <MenuItem value={"Особисте життя"}>Особисте життя</MenuItem>

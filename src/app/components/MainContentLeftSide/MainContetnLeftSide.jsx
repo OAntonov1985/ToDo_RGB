@@ -7,7 +7,6 @@ import {
     BurgerMenuIcon,
     BurgerMenuBox,
 } from "./MainContentLeftSide.styled";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     changeTaskFilter,
@@ -18,19 +17,10 @@ export default function MainContetntLeftSide({
     isRenderLeftSide,
     setIsRenderLeftSide,
 }) {
-    const [checkedValues, setCheckedValues] = useState({
-        all: true,
-        personalLife: false,
-        job: false,
-        houseWork: false,
-        selfDevelopment: false,
-    });
     const checkBoxObject = useSelector(state => state.user.taskFilter);
     const dispatch = useDispatch();
 
     function handleChange(event) {
-        console.log(event.target.name);
-        console.log(event.target.checked);
         dispatch(
             changeTaskFilter({
                 name: event.target.name,

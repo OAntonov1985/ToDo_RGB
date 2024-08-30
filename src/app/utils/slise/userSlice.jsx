@@ -14,6 +14,7 @@ const initialState = {
         selfDevelopment: false,
     },
     filterArray: [],
+    nextTaskID: 8,
 };
 
 const userSlice = createSlice({
@@ -30,7 +31,6 @@ const userSlice = createSlice({
         },
         isModalOpenChange: (state, action) => {
             state.isModalOpen = action.payload;
-            console.log(action.payload);
         },
         changeTaskFilter: (state, action) => {
             const { name, checked } = action.payload;
@@ -77,8 +77,18 @@ const userSlice = createSlice({
 
                 state.tasksList = updateTaskArray;
             }
-
-            console.log(state.tasksList);
+        },
+        addNewTask: (state, action) => {
+            console.log(action.payload);
+            const newArr = {
+                ...action.payload,
+                taskID: state.nextTaskID,
+            };
+            state.tasksList.push(newArr);
+            state.nextTaskID = state.nextTaskID + 1;
+        },
+        taskIDIncrease: (state, action) => {
+            // state.nextTaskID = state.nextTaskID + 1;
         },
     },
 });
@@ -88,6 +98,8 @@ export const {
     isModalOpenChange,
     changeTaskFilter,
     changingArrayFilter,
+    addNewTask,
+    taskIDIncrease,
 } = userSlice.actions;
 
 export default userSlice.reducer;
