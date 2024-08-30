@@ -2,11 +2,7 @@ import {
     UlListTasks,
     UlTitle,
     LiListTasks,
-    TaskCategory,
     TaskSpanElement,
-    TaskTitle,
-    TaskDescription,
-    TaskStatusBox,
     TaskStatus,
 } from "../PerformedTasks/PerformedTasks.styled";
 import { changeTaskStatus } from "@/app/utils/slise/userSlice";
@@ -59,7 +55,6 @@ export default function UnperformedTasks() {
                                           )
                                       }
                                   />
-                                  {/* checked={!task.taskIsDone} */}
                               </UnpreformedTaskCategory>
                           </LiListTasks>
                       );
