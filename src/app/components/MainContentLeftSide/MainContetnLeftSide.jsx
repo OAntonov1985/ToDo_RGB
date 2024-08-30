@@ -7,15 +7,44 @@ import {
     BurgerMenuIcon,
     BurgerMenuBox,
 } from "./MainContentLeftSide.styled";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    changeTaskFilter,
+    changingArrayFilter,
+} from "@/app/utils/slise/userSlice";
 
 export default function MainContetntLeftSide({
     isRenderLeftSide,
     setIsRenderLeftSide,
 }) {
-    const tasksList = useSelector(state => state.user.tasksList);
+    const [checkedValues, setCheckedValues] = useState({
+        all: true,
+        personalLife: false,
+        job: false,
+        houseWork: false,
+        selfDevelopment: false,
+    });
+    const checkBoxObject = useSelector(state => state.user.taskFilter);
+    const dispatch = useDispatch();
 
-    // console.log(tasksList);
+    function handleChange(event) {
+        console.log(event.target.name);
+        console.log(event.target.checked);
+        dispatch(
+            changeTaskFilter({
+                name: event.target.name,
+                checked: event.target.checked,
+            }),
+        );
+        dispatch(
+            changingArrayFilter({
+                id: event.target.id,
+                checked: event.target.checked,
+            }),
+        );
+    }
+
     return (
         <>
             <LeftSideContainer isRenderLeftSide={isRenderLeftSide}>
@@ -29,16 +58,50 @@ export default function MainContetntLeftSide({
                 </TitleLeftSide>
                 <FilterListUl>
                     <FilterListLi>
-                        <CheckboxFilter id='all' />
-                        всі
+                        <CheckboxFilter
+                            id='all'
+                            checked={checkBoxObject.all}
+                            onChange={event => handleChange(event)}
+                            name='all'
+                        />
+                        Всі
                     </FilterListLi>
                     <FilterListLi>
-                        <CheckboxFilter id='active' />
-                        активні
+                        <CheckboxFilter
+                            id='Саморозвиток'
+                            checked={checkBoxObject.selfDevelopment}
+                            onChange={event => handleChange(event)}
+                            // onChange={event => console.log(event.target.id)}
+                            name='selfDevelopment'
+                        />
+                        Саморозвиток
                     </FilterListLi>
                     <FilterListLi>
-                        <CheckboxFilter id='unactive' />
-                        неактивні
+                        <CheckboxFilter
+                            id='Робота'
+                            checked={checkBoxObject.job}
+                            onChange={event => handleChange(event)}
+                            name='job'
+                        />
+                        Робота
+                    </FilterListLi>
+                    <FilterListLi>
+                        <CheckboxFilter
+                            id='Особисте життя'
+                            checked={checkBoxObject.personalLife}
+                            onChange={event => handleChange(event)}
+                            name='personalLife'
+                        />
+                        Особисте життя
+                    </FilterListLi>
+                    <FilterListLi>
+                        <CheckboxFilter
+                            id='Домашнє господарство'
+                            checked={checkBoxObject.houseWork}
+                            onChange={event => handleChange(event)}
+                            name='houseWork'
+                        />
+                        Домашнє господарство
                     </FilterListLi>
                 </FilterListUl>
             </LeftSideContainer>
