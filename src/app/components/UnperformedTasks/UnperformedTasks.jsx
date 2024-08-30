@@ -15,7 +15,7 @@ import { UnpreformedTaskCategory } from "./UnperformedTasks.styles";
 
 export default function UnperformedTasks() {
     const tasksList = useSelector(state => state.user.tasksList);
-    const unpreformedTasks = tasksList.filter(task => task.taskIsDone == false);
+    const unpreformedTasks = tasksList.filter(task => task.taskIsDone == true);
     const dispatch = useDispatch();
 
     return unpreformedTasks.length > 0 ? (
@@ -46,7 +46,7 @@ export default function UnperformedTasks() {
                                       Статус задачі:&nbsp;
                                   </TaskSpanElement>
                                   <TaskStatus
-                                      defaultChecked={!task.taskIsDone}
+                                      defaultChecked={task.taskIsDone}
                                       id={task.taskID}
                                       onChange={event =>
                                           dispatch(

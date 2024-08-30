@@ -1,25 +1,30 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { ModalWindow } from "./Modal.styled";
 import { useSelector, useDispatch } from "react-redux";
 import { isModalOpenChange } from "@/app/utils/slise/userSlice";
+import TaskSekector from "../TaskSelector/TaskSelector";
+import { TextField } from "@mui/material";
+import Button from "@mui/material/Button";
+import { ButtonBox } from "./Modal.styled";
+import { FormControlBox } from "./Modal.styled";
+import { useState } from "react";
 
 export default function BasicModal() {
     const isModalOpen = useSelector(state => state.user.isModalOpen);
     const dispatch = useDispatch();
+    const [formData, setFormData] = useState({
+        taskCategory: "",
+        taskTitle: "",
+        taskDescription: "",
+        taskIsDone: false,
+    });
 
-    const style = {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: 400,
-        bgcolor: "background.paper",
-        border: "2px solid #000",
-        boxShadow: 24,
-        p: 4,
+    const handleChange = event => {
+        setFormData({
+            ...formData,
+            [event.target.id]: event.target.value,
+        });
     };
 
     return (
@@ -30,19 +35,50 @@ export default function BasicModal() {
                 aria-labelledby='modal-modal-title'
                 aria-describedby='modal-modal-description'
             >
-                <Box sx={style}>
+                <ModalWindow>
                     <Typography
                         id='modal-modal-title'
                         variant='h6'
                         component='h2'
+                        fontWeight='bold'
                     >
-                        Text in a modal
+                        Додайте нову задачу
                     </Typography>
-                    <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor
-                        ligula.
-                    </Typography>
-                </Box>
+                    <FormControlBox>
+                        <TaskSekector />
+                        <TextField
+                            id='taskTitle'
+                            label='Назва'
+                            variant='outlined'
+                            required
+                            minLength={5}
+                        />
+                        <TextField
+                            id='taskDescription'
+                            label='Опис'
+                            variant='outlined'
+                            multiline
+                            rows={4}
+                            required
+                            minLength={10}
+                            value={formData.taskDescription}
+                            onChange={handleChange}
+                        />
+                        <ButtonBox>
+                            <Button
+                                variant='outlined'
+                                onClick={() =>
+                                    dispatch(isModalOpenChange(false))
+                                }
+                            >
+                                Відмінити
+                            </Button>
+                            <Button variant='contained' type='submit'>
+                                Зберегти
+                            </Button>
+                        </ButtonBox>
+                    </FormControlBox>
+                </ModalWindow>
             </Modal>
         </div>
     );

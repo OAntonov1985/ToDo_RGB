@@ -17,7 +17,7 @@ const userSlice = createSlice({
             const task = state.tasksList.find(task => task.taskID === taskID);
 
             if (task) {
-                task.taskIsDone = !isChecked;
+                task.taskIsDone = isChecked;
             }
         },
         isModalOpenChange: (state, action) => {

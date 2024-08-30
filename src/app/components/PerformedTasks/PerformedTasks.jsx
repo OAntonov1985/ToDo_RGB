@@ -14,7 +14,7 @@ import { changeTaskStatus } from "@/app/utils/slise/userSlice";
 
 export default function PerformedTasks() {
     const tasksList = useSelector(state => state.user.tasksList);
-    const preformedTasks = tasksList.filter(task => task.taskIsDone == true);
+    const preformedTasks = tasksList.filter(task => task.taskIsDone == false);
     const dispatch = useDispatch();
 
     return preformedTasks.length > 0 ? (
@@ -22,7 +22,7 @@ export default function PerformedTasks() {
             <UlTitle>Активні завдання</UlTitle>
             {preformedTasks.map(task => (
                 <LiListTasks key={task.taskID}>
-                    <TaskCategory taskIsDone={!task.taskIsDone}>
+                    <TaskCategory taskIsDone={task.taskIsDone}>
                         <TaskSpanElement>Категорія:&nbsp;</TaskSpanElement>
                         {task.taskCategory}
                     </TaskCategory>
@@ -38,7 +38,7 @@ export default function PerformedTasks() {
                         <TaskSpanElement>Статус задачі:&nbsp;</TaskSpanElement>
                         <TaskStatus
                             id={task.taskID}
-                            defaultChecked={!task.taskIsDone}
+                            defaultChecked={task.taskIsDone}
                             onChange={event =>
                                 dispatch(
                                     changeTaskStatus({
