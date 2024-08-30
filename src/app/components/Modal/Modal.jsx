@@ -2,11 +2,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { ModalWindow } from "./Modal.styled";
 import { useSelector, useDispatch } from "react-redux";
-import {
-    isModalOpenChange,
-    addNewTask,
-    taskIDIncrease,
-} from "@/app/utils/slise/userSlice";
+import { isModalOpenChange, addNewTask } from "@/app/utils/slise/userSlice";
 import TaskSekector from "../TaskSelector/TaskSelector";
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
@@ -49,7 +45,6 @@ export default function BasicModal() {
         if (!titleHasError && !descriptionHasError) {
             dispatch(addNewTask(formData));
             dispatch(isModalOpenChange(false));
-            dispatch(taskIDIncrease());
 
             setFormData({
                 taskCategory: "Саморозвиток",

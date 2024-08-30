@@ -2,11 +2,13 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import NativeSelect from "@mui/material";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function TaskSekector({ handleChange }) {
-    const [taslSelector, setTaskSelector] = useState("Саморозвиток");
+    const [taskSelector, setTaskSelector] = useState("Саморозвиток");
+    const selectorList = useSelector(state => state.user.categoryList);
+
     return (
         <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label' size='normal'>
@@ -15,7 +17,7 @@ export default function TaskSekector({ handleChange }) {
             <Select
                 labelId='demo-simple-select-label'
                 id='taskCategory'
-                value={taslSelector}
+                value={taskSelector}
                 label='Категорія'
                 onChange={event => {
                     setTaskSelector(event.target.value);
@@ -27,12 +29,11 @@ export default function TaskSekector({ handleChange }) {
                     });
                 }}
             >
-                <MenuItem value={"Робота"}>Робота</MenuItem>
-                <MenuItem value={"Особисте життя"}>Особисте життя</MenuItem>
-                <MenuItem value={"Домашнє господарство"}>
-                    Домашнє господарство
-                </MenuItem>
-                <MenuItem value={"Саморозвиток"}>Саморозвиток</MenuItem>
+                {selectorList.map(category => (
+                    <MenuItem key={category.id} value={category.value}>
+                        {category.value}
+                    </MenuItem>
+                ))}
             </Select>
         </FormControl>
     );

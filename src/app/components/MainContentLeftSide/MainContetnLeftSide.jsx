@@ -18,6 +18,7 @@ export default function MainContetntLeftSide({
     setIsRenderLeftSide,
 }) {
     const checkBoxObject = useSelector(state => state.user.taskFilter);
+    const selectorList = useSelector(state => state.user.categoryList);
     const dispatch = useDispatch();
 
     function handleChange(event) {
@@ -46,53 +47,28 @@ export default function MainContetntLeftSide({
                     </BurgerMenuBox>
                     Фільтр по
                 </TitleLeftSide>
+                <FilterListLi>
+                    <CheckboxFilter
+                        id='all'
+                        defaultChecked={true}
+                        onChange={event => handleChange(event)}
+                        name='all'
+                    />{" "}
+                    Всі
+                </FilterListLi>
+
                 <FilterListUl>
-                    <FilterListLi>
-                        <CheckboxFilter
-                            id='all'
-                            checked={checkBoxObject.all}
-                            onChange={event => handleChange(event)}
-                            name='all'
-                        />
-                        Всі
-                    </FilterListLi>
-                    <FilterListLi>
-                        <CheckboxFilter
-                            id='Саморозвиток'
-                            checked={checkBoxObject.selfDevelopment}
-                            onChange={event => handleChange(event)}
-                            // onChange={event => console.log(event.target.id)}
-                            name='selfDevelopment'
-                        />
-                        Саморозвиток
-                    </FilterListLi>
-                    <FilterListLi>
-                        <CheckboxFilter
-                            id='Робота'
-                            checked={checkBoxObject.job}
-                            onChange={event => handleChange(event)}
-                            name='job'
-                        />
-                        Робота
-                    </FilterListLi>
-                    <FilterListLi>
-                        <CheckboxFilter
-                            id='Особисте життя'
-                            checked={checkBoxObject.personalLife}
-                            onChange={event => handleChange(event)}
-                            name='personalLife'
-                        />
-                        Особисте життя
-                    </FilterListLi>
-                    <FilterListLi>
-                        <CheckboxFilter
-                            id='Домашнє господарство'
-                            checked={checkBoxObject.houseWork}
-                            onChange={event => handleChange(event)}
-                            name='houseWork'
-                        />
-                        Домашнє господарство
-                    </FilterListLi>
+                    {selectorList.map(option => (
+                        <FilterListLi key={option.id}>
+                            <CheckboxFilter
+                                id={option.id}
+                                checked={checkBoxObject.checked}
+                                onChange={event => handleChange(event)}
+                                name={option.name}
+                            />
+                            {option.label}
+                        </FilterListLi>
+                    ))}
                 </FilterListUl>
             </LeftSideContainer>
         </>

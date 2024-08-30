@@ -6,12 +6,42 @@ const initialState = {
     name: "ToDoList",
     tasksList: tasks,
     isModalOpen: false,
+    categoryList: [
+        {
+            id: "Саморозвиток",
+            label: "Саморозвиток",
+            name: "Саморозвиток",
+            value: "Саморозвиток",
+            checked: false,
+        },
+        {
+            id: "Робота",
+            label: "Робота",
+            name: "Робота",
+            value: "Робота",
+            checked: false,
+        },
+        {
+            id: "Особисте життя",
+            label: "Особисте життя",
+            name: "Особисте життя",
+            value: "Особисте життя",
+            checked: false,
+        },
+        {
+            id: "Домашнє господарство",
+            label: "Домашнє господарство",
+            name: "Домашнє господарство",
+            value: "Домашнє господарство",
+            checked: false,
+        },
+    ],
     taskFilter: {
         all: true,
-        personalLife: false,
-        job: false,
-        houseWork: false,
-        selfDevelopment: false,
+        Саморозвиток: false,
+        Робота: false,
+        "Особисте життя": false,
+        "Домашнє господарство": false,
     },
     filterArray: [],
     nextTaskID: 8,
@@ -34,14 +64,15 @@ const userSlice = createSlice({
         },
         changeTaskFilter: (state, action) => {
             const { name, checked } = action.payload;
+            console.log(name);
 
             if (name === "all") {
                 state.taskFilter = {
                     all: checked,
-                    personalLife: false,
-                    job: false,
-                    houseWork: false,
-                    selfDevelopment: false,
+                    Саморозвиток: false,
+                    Робота: false,
+                    "Особисте життя": false,
+                    "Домашнє господарство": false,
                 };
                 state.tasksList = tasks;
             } else {
@@ -87,7 +118,7 @@ const userSlice = createSlice({
             state.tasksList.push(newArr);
             state.nextTaskID = state.nextTaskID + 1;
         },
-        taskIDIncrease: (state, action) => {
+        addNewCategory: (state, action) => {
             // state.nextTaskID = state.nextTaskID + 1;
         },
     },
@@ -99,7 +130,7 @@ export const {
     changeTaskFilter,
     changingArrayFilter,
     addNewTask,
-    taskIDIncrease,
+    addNewCategory,
 } = userSlice.actions;
 
 export default userSlice.reducer;
