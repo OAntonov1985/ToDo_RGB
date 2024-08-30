@@ -9,43 +9,48 @@ import {
     TaskStatusBox,
     TaskStatus,
 } from "./PerformedTasks.styled";
-import { tasks } from "../../constants/tasks";
+import { useSelector, useDispatch } from "react-redux";
+import { changeTaskStatus } from "@/app/utils/slise/userSlice";
 
 export default function PerformedTasks() {
-    const preformedTasks = tasks.filter(task => task.taskIsDone == true);
-    return (
+    const tasksList = useSelector(state => state.user.tasksList);
+    const preformedTasks = tasksList.filter(task => task.taskIsDone == true);
+    const dispatch = useDispatch();
+
+    return preformedTasks.length > 0 ? (
         <UlListTasks>
             <UlTitle>Активні завдання</UlTitle>
-            {preformedTasks && preformedTasks.length > 0
-                ? preformedTasks.map(task => {
-                      return (
-                          <LiListTasks key={task.taskID}>
-                              <TaskCategory>
-                                  <TaskSpanElement>
-                                      Категорія:&nbsp;
-                                  </TaskSpanElement>
-                                  {task.taskCategory}
-                              </TaskCategory>
-                              <TaskTitle>
-                                  <TaskSpanElement>
-                                      Назва:&nbsp;
-                                  </TaskSpanElement>
-                                  {task.taskTitle}
-                              </TaskTitle>
-                              <TaskDescription>
-                                  <TaskSpanElement>Опис:&nbsp;</TaskSpanElement>
-                                  {task.taskDescription}
-                              </TaskDescription>
-                              <TaskStatusBox>
-                                  <TaskSpanElement>
-                                      Статус задачі:&nbsp;
-                                  </TaskSpanElement>
-                                  <TaskStatus></TaskStatus>
-                              </TaskStatusBox>
-                          </LiListTasks>
-                      );
-                  })
-                : null}
+            {preformedTasks.map(task => (
+                <LiListTasks key={task.taskID}>
+                    <TaskCategory taskIsDone={!task.taskIsDone}>
+                        <TaskSpanElement>Категорія:&nbsp;</TaskSpanElement>
+                        {task.taskCategory}
+                    </TaskCategory>
+                    <TaskTitle>
+                        <TaskSpanElement>Назва:&nbsp;</TaskSpanElement>
+                        {task.taskTitle}
+                    </TaskTitle>
+                    <TaskDescription>
+                        <TaskSpanElement>Опис:&nbsp;</TaskSpanElement>
+                        {task.taskDescription}
+                    </TaskDescription>
+                    <TaskStatusBox>
+                        <TaskSpanElement>Статус задачі:&nbsp;</TaskSpanElement>
+                        <TaskStatus
+                            id={task.taskID}
+                            defaultChecked={!task.taskIsDone}
+                            onChange={event =>
+                                dispatch(
+                                    changeTaskStatus({
+                                        taskID: task.taskID,
+                                        isChecked: event.currentTarget.checked,
+                                    }),
+                                )
+                            }
+                        />
+                    </TaskStatusBox>
+                </LiListTasks>
+            ))}
         </UlListTasks>
-    );
+    ) : null;
 }

@@ -29,10 +29,9 @@ export const TaskTitle = styled("div")(() => ({
     // gap: "5px",
 }));
 
-export const TaskCategory = styled("div")(() => ({
-    // width: "100%",
-    // display: "flex",
-    // gap: "5px",
+export const TaskCategory = styled("div")(({ taskIsDone }) => ({
+    color: taskIsDone ? "gray" : "black",
+    textDecoration: taskIsDone ? "line-through" : "none",
 }));
 
 export const TaskDescription = styled("div")(() => ({

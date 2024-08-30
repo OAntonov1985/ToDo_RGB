@@ -1,55 +1,32 @@
-"use client";
+// "use client";
 import { createSlice } from "@reduxjs/toolkit";
 import { tasks } from "@/app/constants/tasks";
 
 const initialState = {
     name: "ToDoList",
     tasksList: tasks,
+    isModalOpen: false,
 };
 
 const userSlice = createSlice({
     name: "ToDoList",
     initialState,
     reducers: {
-        totalGoods: (state, action) => {
-            state.quantityOfGoods = action.payload;
-        },
-        reduceGood: (state, action) => {
-            const arrayIndex = state.userBasket.findIndex(item => {
-                return item.id === action.payload;
-            });
+        changeTaskStatus: (state, action) => {
+            const { taskID, isChecked } = action.payload;
+            const task = state.tasksList.find(task => task.taskID === taskID);
 
-            if (arrayIndex !== -1 && state.userBasket[arrayIndex].number > 1) {
-                state.userBasket[arrayIndex].number =
-                    state.userBasket[arrayIndex].number - 1;
-                state.userBasket[arrayIndex].totalPrice =
-                    state.userBasket[arrayIndex].number *
-                    state.userBasket[arrayIndex].price;
+            if (task) {
+                task.taskIsDone = !isChecked;
             }
-            const updatedBasketJSON = JSON.stringify(state.userBasket);
-            localStorage.setItem("BASKET", updatedBasketJSON);
-
-            const newTotalGoods = state.userBasket.reduce(
-                (accum, item) => (accum = accum + item.number),
-                0,
-            );
-            state.quantityOfGoods = newTotalGoods;
-            localStorage.setItem("totalGoods", newTotalGoods);
-
-            const newTotalPriseInAllBasket = state.userBasket.reduce(
-                (accum, item) => (accum = accum + item.price * item.number),
-                0,
-            );
-            state.totalPriseInAllBasket = newTotalPriseInAllBasket;
-            localStorage.setItem(
-                "totalPriseInAllBasket",
-                newTotalPriseInAllBasket,
-            );
+        },
+        isModalOpenChange: (state, action) => {
+            state.isModalOpen = action.payload;
+            console.log(action.payload);
         },
     },
 });
 
-export const { increaseGood, totalGoods, reduceGood, setUserInfo } =
-    userSlice.actions;
+export const { changeTaskStatus, isModalOpenChange } = userSlice.actions;
 
 export default userSlice.reducer;
