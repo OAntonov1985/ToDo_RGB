@@ -18,9 +18,7 @@ export default function MainContetnRightSide({
     return (
         <RightSideContainer>
             <RightSideTitle>
-                <BurgerMenuBox
-                // onClick={() => setIsRenderLeftSide(!isRenderLeftSide)}
-                >
+                <BurgerMenuBox>
                     <BurgerMenuIcon
                         onClick={() => setIsRenderLeftSide(!isRenderLeftSide)}
                     />

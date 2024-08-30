@@ -25,7 +25,6 @@ export default function BasicModal() {
         taskIsDone: false,
         taskID: nextTaskID,
     });
-    console.log(nextTaskID);
 
     const [titleError, setTitleError] = useState(false);
     const [descrError, setDescrError] = useState(false);
@@ -38,27 +37,6 @@ export default function BasicModal() {
         }));
     };
 
-    // function submitForm(event) {
-    //     event.preventDefault();
-    //     if (formData.taskTitle.length < 4) setTitleError(true);
-    //     else setTitleError(false);
-    //     if (formData.taskDescription.length < 7) setDescrError(true);
-    //     else setDescrError(false);
-    //     if ((titleError == false) & (descrError == false)) {
-    //         setTitleError(false);
-    //         setDescrError(false);
-    //         dispatch(addNewTask(formData));
-    //         dispatch(isModalOpenChange(false));
-    //         dispatch(taskIDIncrease());
-    //         setFormData({
-    //             taskCategory: "Саморозвиток",
-    //             taskTitle: "",
-    //             taskDescription: "",
-    //             taskIsDone: false,
-    //         });
-    //         console.log(formData);
-    //     }
-    // }
     function submitForm(event) {
         event.preventDefault();
 

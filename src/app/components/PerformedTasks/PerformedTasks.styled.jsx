@@ -23,28 +23,15 @@ export const LiListTasks = styled("li")(() => ({
     borderRadius: "10px",
 }));
 
-export const TaskTitle = styled("div")(() => ({
-    // width: "100%",
-    // display: "flex",
-    // gap: "5px",
-}));
+export const TaskTitle = styled("div")(() => ({}));
 
 export const TaskCategory = styled("div")(({ taskIsDone }) => ({
     color: taskIsDone ? "gray" : "black",
     textDecoration: taskIsDone ? "line-through" : "none",
 }));
+export const TaskDescription = styled("div")(() => ({}));
 
-export const TaskDescription = styled("div")(() => ({
-    // width: "100%",
-    // display: "flex",
-    // gap: "5px",
-}));
-
-export const TaskStatus = styled(Checkbox)(({ taskIsDone }) => ({
-    // width: "100%",
-    // display: "flex",
-    // gap: "5px",
-}));
+export const TaskStatus = styled(Checkbox)(({ taskIsDone }) => ({}));
 
 export const TaskSpanElement = styled("span")(() => ({
     fontWeight: "bold",

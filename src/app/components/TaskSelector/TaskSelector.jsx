@@ -9,11 +9,7 @@ export default function TaskSekector({ handleChange }) {
     const [taslSelector, setTaskSelector] = useState("Саморозвиток");
     return (
         <FormControl fullWidth>
-            <InputLabel
-                id='demo-simple-select-label'
-                size='normal'
-                // sx={{ fontSize: "1.25rem", marginBottom: 2 }}
-            >
+            <InputLabel id='demo-simple-select-label' size='normal'>
                 Категорія
             </InputLabel>
             <Select
@@ -22,9 +18,8 @@ export default function TaskSekector({ handleChange }) {
                 value={taslSelector}
                 label='Категорія'
                 onChange={event => {
-                    setTaskSelector(event.target.value); // Оновлюємо локальний стан
+                    setTaskSelector(event.target.value);
                     handleChange({
-                        // Викликаємо handleChange
                         target: {
                             id: "taskCategory",
                             value: event.target.value,
