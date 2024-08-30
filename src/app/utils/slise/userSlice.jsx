@@ -64,7 +64,7 @@ const userSlice = createSlice({
         },
         changeTaskFilter: (state, action) => {
             const { name, checked } = action.payload;
-            console.log(name);
+            // console.log(state.taskFilter);
 
             if (name === "Всі") {
                 state.taskFilter = {
@@ -85,6 +85,7 @@ const userSlice = createSlice({
         },
         changingArrayFilter: (state, action) => {
             const { id, checked } = action.payload;
+            console.log(id);
 
             if (id === "Всі") {
                 if (checked) {
@@ -119,7 +120,22 @@ const userSlice = createSlice({
             state.nextTaskID = state.nextTaskID + 1;
         },
         addNewCategory: (state, action) => {
-            // state.nextTaskID = state.nextTaskID + 1;
+            const newKey = action.payload;
+            const newObj = { [newKey]: false };
+            const newArray = { ...state.taskFilter, ...newObj };
+            // console.log(newArray);
+            state.taskFilter = newArray;
+
+            const newSelector = {
+                id: newKey,
+                label: newKey,
+                name: newKey,
+                value: newKey,
+                checked: false,
+            };
+            state.categoryList.push(newSelector);
+            // console.log(temp);
+            // state.categoryList = temp;
         },
     },
 });

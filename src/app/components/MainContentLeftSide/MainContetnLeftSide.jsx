@@ -7,14 +7,13 @@ import {
     BurgerMenuIcon,
     BurgerMenuBox,
 } from "./MainContentLeftSide.styled";
-import { SpanPlus } from "../AddNewTask/AddNewTask.styled";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
     changeTaskFilter,
     changingArrayFilter,
 } from "@/app/utils/slise/userSlice";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+import AddNewCategory from "../AddNewCategory/AddNewCategory";
 
 export default function MainContetntLeftSide({
     isRenderLeftSide,
@@ -23,6 +22,7 @@ export default function MainContetntLeftSide({
     const checkBoxObject = useSelector(state => state.user.taskFilter);
     const selectorList = useSelector(state => state.user.categoryList);
     const dispatch = useDispatch();
+    console.log(selectorList);
 
     function handleChange(event) {
         dispatch(
@@ -60,7 +60,6 @@ export default function MainContetntLeftSide({
                     />{" "}
                     Всі
                 </FilterListLi>
-
                 <FilterListUl>
                     {selectorList.map(option => (
                         <FilterListLi key={option.id}>
@@ -74,15 +73,7 @@ export default function MainContetntLeftSide({
                         </FilterListLi>
                     ))}
                 </FilterListUl>
-                <Stack direction='row' spacing={2}>
-                    <Button
-                        size='small'
-                        variant='contained'
-                        // onClick={() => dispatch(isModalOpenChange(true))}
-                    >
-                        <SpanPlus>+&nbsp;</SpanPlus> Додати нову задачу
-                    </Button>
-                </Stack>
+                <AddNewCategory />
             </LeftSideContainer>
         </>
     );

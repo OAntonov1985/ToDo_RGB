@@ -22,6 +22,7 @@ export const TitleLeftSide = styled("div")(() => ({
 
 export const FilterListUl = styled("ul")(() => ({
     fontSize: "14px",
+    marginBottom: "30px",
 }));
 
 export const FilterListLi = styled("li")(() => ({
