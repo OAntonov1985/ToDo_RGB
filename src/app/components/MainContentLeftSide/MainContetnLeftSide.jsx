@@ -7,11 +7,14 @@ import {
     BurgerMenuIcon,
     BurgerMenuBox,
 } from "./MainContentLeftSide.styled";
+import { SpanPlus } from "../AddNewTask/AddNewTask.styled";
 import { useDispatch, useSelector } from "react-redux";
 import {
     changeTaskFilter,
     changingArrayFilter,
 } from "@/app/utils/slise/userSlice";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
 export default function MainContetntLeftSide({
     isRenderLeftSide,
@@ -49,10 +52,11 @@ export default function MainContetntLeftSide({
                 </TitleLeftSide>
                 <FilterListLi>
                     <CheckboxFilter
-                        id='all'
-                        defaultChecked={true}
+                        id='Всі'
+                        // defaultChecked={true}
+                        checked={checkBoxObject.Всі}
                         onChange={event => handleChange(event)}
-                        name='all'
+                        name='Всі'
                     />{" "}
                     Всі
                 </FilterListLi>
@@ -62,7 +66,7 @@ export default function MainContetntLeftSide({
                         <FilterListLi key={option.id}>
                             <CheckboxFilter
                                 id={option.id}
-                                checked={checkBoxObject.checked}
+                                checked={checkBoxObject[option.id]}
                                 onChange={event => handleChange(event)}
                                 name={option.name}
                             />
@@ -70,6 +74,15 @@ export default function MainContetntLeftSide({
                         </FilterListLi>
                     ))}
                 </FilterListUl>
+                <Stack direction='row' spacing={2}>
+                    <Button
+                        size='small'
+                        variant='contained'
+                        // onClick={() => dispatch(isModalOpenChange(true))}
+                    >
+                        <SpanPlus>+&nbsp;</SpanPlus> Додати нову задачу
+                    </Button>
+                </Stack>
             </LeftSideContainer>
         </>
     );

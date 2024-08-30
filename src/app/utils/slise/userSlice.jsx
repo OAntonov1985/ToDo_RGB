@@ -37,7 +37,7 @@ const initialState = {
         },
     ],
     taskFilter: {
-        all: true,
+        Всі: true,
         Саморозвиток: false,
         Робота: false,
         "Особисте життя": false,
@@ -66,9 +66,9 @@ const userSlice = createSlice({
             const { name, checked } = action.payload;
             console.log(name);
 
-            if (name === "all") {
+            if (name === "Всі") {
                 state.taskFilter = {
-                    all: checked,
+                    Всі: checked,
                     Саморозвиток: false,
                     Робота: false,
                     "Особисте життя": false,
@@ -78,7 +78,7 @@ const userSlice = createSlice({
             } else {
                 state.taskFilter = {
                     ...state.taskFilter,
-                    all: false,
+                    Всі: false,
                     [name]: checked,
                 };
             }
@@ -86,7 +86,7 @@ const userSlice = createSlice({
         changingArrayFilter: (state, action) => {
             const { id, checked } = action.payload;
 
-            if (id === "all") {
+            if (id === "Всі") {
                 if (checked) {
                     state.tasksList = tasks;
                     state.filterArray = [];
