@@ -1,5 +1,3 @@
-"use client";
-
 import { styled } from "@mui/material";
 import { Colors } from "@/app/utils/Colors/Colors";
 import Image from "next/image";

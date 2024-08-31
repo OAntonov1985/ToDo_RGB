@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { changeTaskStatus } from "@/app/utils/slise/userSlice";
 
 export default function PerformedTasks() {
-    const tasksList = useSelector(state => state.user.tasksList);
+    const tasksList = useSelector(state => state.user.resultTaskList);
     const preformedTasks = tasksList.filter(task => task.taskIsDone == false);
     const dispatch = useDispatch();
 

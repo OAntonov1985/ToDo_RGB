@@ -5,8 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 export const LeftSideContainer = styled("div")(({ isRenderLeftSide }) => ({
     backdropColor: Colors.bgColorLeft,
-    width: "290px",
-    height: "1000px",
+    minWidth: "290px",
     display: isRenderLeftSide ? "flex" : "none",
     flexDirection: "column",
     padding: "10px",
@@ -23,6 +22,12 @@ export const TitleLeftSide = styled("div")(() => ({
 export const FilterListUl = styled("ul")(() => ({
     fontSize: "14px",
     marginBottom: "30px",
+    alignItems: "stretch",
+    justifyContent: "spase-between",
+    "@media (max-width: 800px)": {
+        display: "flex",
+        flexWrap: "wrap",
+    },
 }));
 
 export const FilterListLi = styled("li")(() => ({

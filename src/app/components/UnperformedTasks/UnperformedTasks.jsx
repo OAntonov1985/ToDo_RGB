@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { UnpreformedTaskCategory } from "./UnperformedTasks.styles";
 
 export default function UnperformedTasks() {
-    const tasksList = useSelector(state => state.user.tasksList);
+    const tasksList = useSelector(state => state.user.resultTaskList);
     const unpreformedTasks = tasksList.filter(task => task.taskIsDone == true);
     const dispatch = useDispatch();
 

@@ -9,31 +9,21 @@ import {
 } from "./MainContentLeftSide.styled";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-    changeTaskFilter,
-    changingArrayFilter,
-} from "@/app/utils/slise/userSlice";
+import { changeTaskFilter } from "@/app/utils/slise/userSlice";
 import AddNewCategory from "../AddNewCategory/AddNewCategory";
 
 export default function MainContetntLeftSide({
     isRenderLeftSide,
     setIsRenderLeftSide,
 }) {
-    const checkBoxObject = useSelector(state => state.user.taskFilter);
     const selectorList = useSelector(state => state.user.categoryList);
     const dispatch = useDispatch();
-    console.log(selectorList);
+    const test = useSelector(state => state.user.filterArray);
 
     function handleChange(event) {
         dispatch(
             changeTaskFilter({
                 name: event.target.name,
-                checked: event.target.checked,
-            }),
-        );
-        dispatch(
-            changingArrayFilter({
-                id: event.target.id,
                 checked: event.target.checked,
             }),
         );
@@ -50,7 +40,7 @@ export default function MainContetntLeftSide({
                     </BurgerMenuBox>
                     Фільтр по
                 </TitleLeftSide>
-                <FilterListLi>
+                {/* <FilterListLi>
                     <CheckboxFilter
                         id='Всі'
                         // defaultChecked={true}
@@ -59,13 +49,13 @@ export default function MainContetntLeftSide({
                         name='Всі'
                     />{" "}
                     Всі
-                </FilterListLi>
+                </FilterListLi> */}
                 <FilterListUl>
                     {selectorList.map(option => (
                         <FilterListLi key={option.id}>
                             <CheckboxFilter
                                 id={option.id}
-                                checked={checkBoxObject[option.id]}
+                                checked={option.checked}
                                 onChange={event => handleChange(event)}
                                 name={option.name}
                             />

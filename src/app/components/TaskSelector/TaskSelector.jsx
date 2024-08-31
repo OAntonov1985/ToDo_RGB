@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 export default function TaskSekector({ handleChange }) {
     const [taskSelector, setTaskSelector] = useState("Саморозвиток");
-    const selectorList = useSelector(state => state.user.categoryList);
+    const selectorList = useSelector(state => state.user.categoryList.slice(1));
 
     return (
         <FormControl fullWidth>

@@ -56,3 +56,41 @@ export const tasks = [
         taskIsDone: false,
     },
 ];
+
+export const categoryList = [
+    {
+        id: "Всі",
+        label: "Всі",
+        name: "Всі",
+        value: "Всі",
+        checked: true,
+    },
+    {
+        id: "Саморозвиток",
+        label: "Саморозвиток",
+        name: "Саморозвиток",
+        value: "Саморозвиток",
+        checked: false,
+    },
+    {
+        id: "Робота",
+        label: "Робота",
+        name: "Робота",
+        value: "Робота",
+        checked: false,
+    },
+    {
+        id: "Особисте життя",
+        label: "Особисте життя",
+        name: "Особисте життя",
+        value: "Особисте життя",
+        checked: false,
+    },
+    {
+        id: "Домашнє господарство",
+        label: "Домашнє господарство",
+        name: "Домашнє господарство",
+        value: "Домашнє господарство",
+        checked: false,
+    },
+];
